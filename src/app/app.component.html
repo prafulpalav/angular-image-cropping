@@ -1,0 +1,25 @@
+<div>
+
+Image Wizard
+</div>
+<input type="file" (change)="fileChangeEvent($event)" />
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3"
+    [resizeToWidth]="128"
+    output="base64"
+    format="jpeg"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<img [src]="croppedImage" />
+
+<div *ngIf="croppedImage">
+<button (click)="saveCroppedImage()">Download Image</button>
+</div>
+<router-outlet />
